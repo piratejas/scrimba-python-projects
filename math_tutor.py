@@ -1,4 +1,4 @@
-# Create an app to practise mulitplication tables
+# Create an app to practise multiplication tables
     # User specifies number of random practice questions
     # User is presented with a prompt eg. '5 x 5 = ' and inputs the answer for each of the questions
     # When all questions are answered, print out following info:
