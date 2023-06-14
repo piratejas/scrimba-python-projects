@@ -29,10 +29,7 @@ def math_tutor():
     all_times_pq = []
     for i in range(num_of_rounds):
         # generate 2 random integers in range
-        rand_nums = []
-        for i in range(2):
-            rand_nums.append(random.randint(1, max_num))
-        num1, num2 = rand_nums[0], rand_nums[1]
+        num1, num2 = random.randint(1, max_num), random.randint(1, max_num)
         # formulate the question
         question = f"{str(num1)} x {str(num2)} = "
         # save question in list
@@ -44,7 +41,7 @@ def math_tutor():
         # end timer
         end = timer()
         # calculate time taken and save in list
-        time_pq = end - start
+        time_pq = round(end - start, 2)
         all_times_pq.append(time_pq)
         # save guess in list
         all_guesses.append(str(user_guess))
@@ -57,7 +54,7 @@ def math_tutor():
     # calculate percentage score
     percent = round(total_score / num_of_rounds * 100)
     # calculate total time taken
-    total_time = sum(all_times_pq)
+    total_time = round(sum(all_times_pq), 2)
     # score message
     msg = ""
     if percent >= 90:
@@ -68,8 +65,8 @@ def math_tutor():
     # show all questions, answers and guesses
     summary = [f"{question}{answer}, but you guessed {guess} :(" if guess != answer else f"{question}{answer}. You got it right in {time} milliseconds!" for question, answer, guess, time in zip(all_questions, all_answers, all_guesses, all_times_pq)]
     # print summary line by line
-    for i in range(len(summary)):
-        print(summary[i])
+    for line in summary:
+        print(line)
     print(f"Total time: {str(total_time)}ms")
     print("Thank you for playing!")
     print(f"You got {str(total_score)} correct out of {str(num_of_rounds)}")
