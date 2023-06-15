@@ -20,14 +20,14 @@ def marble_game():
         bet = int(input(f"You have £{purse} left. How much would you like to bet on this round?"))
         if bet > purse:
             bet = int(input(f"You only have £{purse} in your account! Try a lower bet."))
+        elif bet < 0:
+            bet = int(input("Cheeky! You cannot bet a negative value. Try again."))
         marble = draw(bag)
-        result = ''
-        colour = ''
+        result = 'win'
+        colour = 'green'
         amount = bet
         if marble == 'G':
             purse += amount
-            result = "win"
-            colour = "green"
         elif marble == 'B':
             amount = bet * 10
             purse += amount
