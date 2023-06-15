@@ -14,20 +14,36 @@
 from random import choice as draw
 
 def marble_game():
-    bag = "GGGGGGRRRR"
+    bag = "GGGGGBRRRRW"
     purse = 1000
     while purse > 500:
-        bet = int(input("How much would you like to bet on this round?"))
+        bet = int(input(f"You have £{purse} left. How much would you like to bet on this round?"))
+        if bet > purse:
+            bet = int(input(f"You only have £{purse} in your account! Try a lower bet."))
         marble = draw(bag)
         result = ''
+        colour = ''
+        amount = bet
         if marble == 'G':
-            purse += bet
+            purse += amount
             result = "win"
-        elif marble == 'R':
-            purse -= bet
+            colour = "green"
+        elif marble == 'B':
+            amount = bet * 10
+            purse += amount
+            result = "win"
+            colour = "black"
+        elif marble == 'W':
+            amount = bet * 5
+            purse -= amount
             result = "lose"
-        msg = f"You drew a %s marble. You {result} £{str(bet)}! Press enter to continue." %("green" if marble == "G" else "red")
+            colour = "white"
+        else:
+            purse -= amount
+            result = "lose"
+            colour = "red"
+        msg = f"You drew a {colour} marble. You {result} £{str(amount)}! Press enter to continue."
         input(msg)
-    input("You don't have enough money left to play. Game over!")
+    input("You don't have enough money left to play again. Game over!")
 
 marble_game()
